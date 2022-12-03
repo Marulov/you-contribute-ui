@@ -1,0 +1,24 @@
+<body>
+<div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
+  <div class="wrapper wrapper--w960">
+    <div class="card card-2">
+      <div class="card-heading"></div>
+      <div class="card-body">
+        <h2 class="title">Import Issues</h2>
+        <form method="POST" [formGroup]="importRepositoryForm" (ngSubmit)="import()">
+          <div class="input-group">
+            <input class="input--style-2" type="text" placeholder="Organization" name="organization"
+                   formControlName="organization">
+          </div>
+          <div class="input-group">
+            <input class="input--style-2" type="text" placeholder="Repository" name="repository"
+                   formControlName="repository">
+          </div>
+          <div class="p-t-30">
+            <button class="btn btn--radius btn--green" type="submit">Import</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
