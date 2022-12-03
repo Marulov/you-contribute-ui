@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {RepositoryService} from "../services/repository.service";
 import {first} from "rxjs";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-import',
@@ -15,20 +16,28 @@ export class ImportComponent implements OnInit {
     repository: ['', Validators.required],
   })
 
-  constructor(private formBuilder: FormBuilder, private repositoryService: RepositoryService) {
+  loading: boolean = false
+
+  constructor(private formBuilder: FormBuilder,
+              private repositoryService: RepositoryService,
+              private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
   }
 
   import() {
+    this.loading = true
     this.repositoryService.import(this.importRepositoryForm.get('organization')?.value, this.importRepositoryForm.get('repository')?.value)
       .pipe(first())
       .subscribe(() => {
-          alert("Imported successfully")
+          this.loading = false
+          this.toastr.success("Imported successfully", "Success")
         },
         error => {
-          alert(error)
+          this.loading = false
+          console.log(error)
+          this.toastr.error(error.error, "Error")
         })
   }
 }
