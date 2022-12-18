@@ -1,1 +1,15 @@
-<p>issue works!</p>
+<table class="table m-5">
+  <thead>
+  <tr>
+    <th scope="col">Title</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let issue of issues">
+    <td>{{issue.title}}</td>
+    <td><a class="btn btn-primary" href="{{issue.htmlUrl}}" target="_blank" role="button">Show</a>
+    </td>
+  </tr>
+  </tbody>
+</table>

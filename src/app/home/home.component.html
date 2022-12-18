@@ -1,1 +1,17 @@
-<p>home works!</p>
+<table class="table m-5">
+  <thead>
+  <tr>
+    <th scope="col">Organization</th>
+    <th scope="col">Repository</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let repository of repositories">
+    <td>{{repository.organization}}</td>
+    <td>{{repository.repository}}</td>
+    <td><a class="btn btn-primary" [routerLink]="['/repository', repository.id, 'issues']" role="button">Issues</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
